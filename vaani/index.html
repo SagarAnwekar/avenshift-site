@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Vaani by Avenshift: speak your daily sales in Hindi or English, get your numbers. Free browser demo - no upload, no account."><title>Vaani by Avenshift | Voice-note sales demo</title><style>
+:root{--bg:#101412;--ink:#f3f5ed;--muted:#b5bdb3;--lime:#ddff94;--line:#343d33}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}a{color:inherit;text-decoration:none}button{font-family:inherit}button,a{touch-action:manipulation}header,main,footer{max-width:1240px;margin:auto;padding:0 54px}header{display:flex;align-items:center;justify-content:space-between;height:104px;border-bottom:1px solid var(--line)}.brand{font-size:24px;font-weight:700;letter-spacing:-1px;display:flex;align-items:center;gap:12px}.brand small{font-size:11px;font-weight:400;color:var(--muted);letter-spacing:2px;margin-left:4px}.mark{width:32px;height:32px}.nav{display:flex;gap:32px;font-size:13px}.nav a:hover{color:var(--lime)}.status{font:11px monospace;letter-spacing:1px;border:1px solid var(--line);padding:10px 13px;border-radius:30px;color:var(--lime)}
+.hero{padding:70px 0 60px;display:grid;grid-template-columns:1.2fr 1fr;gap:70px;align-items:center}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin-bottom:26px}.hero h1{font-family:Georgia,serif;font-weight:400;font-size:64px;line-height:1.03;letter-spacing:-2.5px;margin:0 0 24px}.hero h1 em{font-weight:400;color:var(--lime)}.intro{font-size:17px;line-height:1.65;color:var(--muted);max-width:460px}.hindi-line{font-size:20px;color:var(--ink);margin-top:18px;font-family:Georgia,serif}.side{border:1px solid #526049;background:linear-gradient(145deg,#273524,#18201a);border-radius:22px;padding:27px}.side h2{font-family:Georgia,serif;font-weight:400;font-size:26px;letter-spacing:-.5px;margin:4px 0 14px}.side p{font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 14px}.side .tick{display:flex;gap:10px;font-size:13px;color:var(--muted);padding:7px 0;border-top:1px solid #2a332a}.side .tick b{color:var(--lime);font-weight:400}
+.demo{border:1px solid var(--line);border-radius:22px;padding:34px;margin:10px 0 70px;background:#141a15}.demo-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:22px}.demo-head h2{font-family:Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-1px;margin:0}.langrow{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--muted)}select{background:#101812;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+.microw{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-bottom:18px}.mic{width:96px;height:96px;border-radius:50%;border:none;background:var(--lime);color:var(--bg);font-size:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s}.mic:hover{transform:scale(1.05)}.mic.listening{background:#ff8f6b;animation:pulse 1.2s infinite}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,143,107,.5)}70%{box-shadow:0 0 0 22px rgba(255,143,107,0)}100%{box-shadow:0 0 0 0 rgba(255,143,107,0)}}.micnote{font-size:12px;color:var(--muted);line-height:1.6;max-width:340px}.micnote b{color:var(--ink);font-weight:400}
+textarea{width:100%;min-height:96px;background:#101812;border:1px solid var(--line);border-radius:12px;color:var(--ink);font-size:16px;line-height:1.6;padding:16px;resize:vertical}textarea:focus{outline:2px solid var(--lime);outline-offset:2px}.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center}.btn{background:var(--lime);color:var(--bg);border:none;padding:15px 26px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}.btn:hover{background:#edffc9}.btn.ghost{background:transparent;color:var(--lime);border:1px solid var(--line);font-weight:400}.btn.ghost:hover{border-color:var(--lime)}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:30px;padding:9px 15px;font-size:12px;cursor:pointer}.chip:hover{color:var(--lime);border-color:var(--lime)}
+.results{margin-top:28px;display:none}.results.show{display:block}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.card{border:1px solid var(--line);border-radius:10px;padding:18px}.card small{font:10px monospace;color:var(--muted);letter-spacing:1px}.card b{display:block;font-family:Georgia,serif;font-weight:400;font-size:30px;color:var(--lime);margin-top:8px;letter-spacing:-.5px}.toptext{font-size:14px;color:var(--muted);margin:4px 0 16px}.toptext b{color:var(--ink);font-weight:400}table{width:100%;border-collapse:collapse;font-size:14px}th{font:10px monospace;color:var(--muted);text-align:left;letter-spacing:1px;padding:8px 6px;border-bottom:1px solid var(--line)}td{padding:10px 6px;border-bottom:1px solid #232b23;color:var(--ink)}td.num,th.num{text-align:right}.warnline{font:11px monospace;color:#ffcf8f;margin-top:14px;line-height:1.6}.fineline{font:11px monospace;color:var(--muted);margin-top:14px;line-height:1.6}
+.section{padding:60px 0;border-top:1px solid var(--line)}.section h2{font-family:Georgia,serif;font-size:38px;line-height:1.12;font-weight:400;letter-spacing:-1px;margin:0 0 30px}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.step{border:1px solid var(--line);border-radius:10px;padding:22px}.step small{color:var(--lime);font:11px monospace}.step h3{font-size:16px;font-weight:400;margin:18px 0 10px}.step p{font-size:12px;line-height:1.6;color:var(--muted)}.notes{display:grid;grid-template-columns:1fr 1fr;gap:16px}.note{background:#1b221c;padding:24px;border-radius:8px}.note h3{font-size:15px;font-weight:400;margin:0 0 10px}.note p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}
+.contact{background:var(--lime);color:var(--bg);border-radius:14px;padding:42px;display:flex;justify-content:space-between;gap:30px;align-items:center;margin:60px 0}.contact h2{font-family:Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-.8px;margin:0 0 14px}.contact a{font-size:14px;border-bottom:1px solid;padding-bottom:8px;white-space:nowrap}.contact p{font-size:13px;margin:0;opacity:.75}.footer-inner{padding:30px 0 44px;display:flex;justify-content:space-between;gap:25px;color:var(--muted);font-size:11px;line-height:1.7}
+@media(max-width:850px){header,main,footer{padding:0 25px}.hero{grid-template-columns:1fr;gap:32px;padding:50px 0}.hero h1{font-size:46px}.cards{grid-template-columns:repeat(2,1fr)}.flow,.notes{grid-template-columns:1fr}.demo{padding:22px}.contact{padding:28px;display:block}.contact a{display:inline-block;margin-top:22px}.status{display:none}}
+</style></head><body>
+<header><a class="brand" href="../"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path fill="#ddff94" d="M14 2h5l13 28h-8L16 11 8 30H0z"/><path fill="#101412" d="M15 22h10l3 6H12z"/></svg>vaani<small>BY AVENSHIFT</small></a><nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#notes">Honest notes</a><a href="../">avenshift ↗</a></nav><span class="status">LIVE BROWSER DEMO</span></header>
+<main>
+<section class="hero"><div><div class="eyebrow">Vaani · Voice-note sales assistant</div><h1>Speak your sales.<br><em>Get your numbers.</em></h1><p class="intro">Made for local shops and medical stores. Say what you sold, in Hindi or English, and Vaani writes it down, adds it up and reads it back. This page is a free demo that runs fully in your browser.</p><div class="hindi-line">बोलिए — Vaani लिखेगी, जोड़ेगी, सुनाएगी।</div></div>
+<div class="side"><h2>No app. No account.<br>No upload.</h2><p>The demo uses your browser's own speech service to hear you, and this page to do the maths. Nothing is recorded or sent to us.</p><div class="tick"><b>01</b> Hindi, English, Hinglish, मराठी</div><div class="tick"><b>02</b> Cash vs UPI split</div><div class="tick"><b>03</b> Spoken reply in your language</div></div></section>
+<section class="demo" id="demo"><div class="demo-head"><h2>Try it now</h2><div class="langrow"><label for="lang">Language</label><select id="lang"><option value="en-IN">English (India)</option><option value="hi-IN" selected>हिन्दी</option><option value="mr-IN">मराठी</option></select></div></div>
+<div class="microw"><button class="mic" id="mic" aria-label="Start or stop listening">🎙</button><div class="micnote" id="micnote"><b>Tap the mic and say a sale.</b><br>Example: "Aaj paracetamol ke 10 strip beche 250 rupaye." Tap again to stop. Live mic needs Chrome or Edge; on other browsers, use a sample below.</div></div>
+<textarea id="transcript" aria-label="What you said" placeholder="Your words appear here. You can edit them before making the summary."></textarea>
+<div class="btnrow"><button class="btn" id="summarize">Make my summary</button><div class="chips"><button class="chip" data-sample="hi">Sample · हिन्दी</button><button class="chip" data-sample="en">Sample · English</button><button class="chip" data-sample="mix">Sample · Kirana</button></div></div>
+<div class="results" id="results"><div class="cards"><div class="card"><small>TOTAL SALE</small><b id="r-total">₹0</b></div><div class="card"><small>ITEMS SOLD</small><b id="r-count">0</b></div><div class="card"><small>CASH</small><b id="r-cash">₹0</b></div><div class="card"><small>UPI / ONLINE</small><b id="r-upi">₹0</b></div></div>
+<div class="toptext" id="r-top"></div><table id="r-table"><thead><tr><th>ITEM</th><th class="num">QTY</th><th class="num">AMOUNT</th><th>PAYMENT</th></tr></thead><tbody id="r-rows"></tbody></table>
+<div class="warnline" id="r-warn" style="display:none"></div>
+<div class="btnrow"><button class="btn ghost" id="speak">🔊 Sunaiye · Listen</button><button class="btn ghost" id="copy">Copy summary text</button></div>
+<div class="fineline">The spoken reply uses your device's own voice. Hindi and Marathi voices depend on your phone or computer.</div></div>
+<div class="fineline">Demo runs fully in your browser. Audio is handled by your browser's speech service; this page stores nothing and sends nothing to us.</div></section>
+<section class="section" id="how"><div class="eyebrow">How it works</div><h2>Bolo. Likho. Jodo.</h2><div class="flow"><article class="step"><small>01 / BOL</small><h3>Say the sale</h3><p>"Crocin ke 5 strip, 120 rupaye." One line per sale, or the whole day at once.</p></article><article class="step"><small>02 / LIKHO</small><h3>Vaani writes it</h3><p>Your words become text you can check and fix before anything is added up.</p></article><article class="step"><small>03 / JODO</small><h3>Get the numbers</h3><p>Total, items, cash vs UPI, and a spoken reply you can listen to or copy for WhatsApp.</p></article></div></section>
+<section class="section" id="notes"><div class="eyebrow">Honest notes</div><h2>What this demo is.<br>And what it is not.</h2><div class="notes"><article class="note"><h3>A real demo, a small one.</h3><p>This page understands simple sale sentences in English, Hindi and Hinglish, and does the addition itself. It can mishear or mis-add. Always check the numbers before trusting them.</p></article><article class="note"><h3>Your words stay with you.</h3><p>Listening is done by your browser's speech service (on Chrome, that is Google's speech recognizer). This page itself saves and sends nothing. The full product will say clearly where data goes before it asks for any.</p></article><article class="note"><h3>Voices depend on your device.</h3><p>The spoken reply uses the voices already on your phone or computer. Many devices have a Hindi voice; fewer have Marathi. If yours does not, the reply still plays in the closest voice available.</p></article><article class="note"><h3>The product is in development.</h3><p>Vaani is being built by Avenshift for shop owners who would rather speak than type. This demo shows the idea; the full product, with saved history and better understanding, is not live yet.</p></article></div></section>
+<section class="contact"><div><h2>Run a shop? We are listening.</h2><p>Vaani by Avenshift. Early, honest, in development.</p></div><a href="mailto:avenshift@proton.me">avenshift@proton.me ↗</a></section>
+</main>
+<footer><div class="footer-inner"><div>Vaani · a project by Avenshift.<br>Independent project, not a registered company.</div><div><a href="../">avenshift ↗</a><br><a href="mailto:avenshift@proton.me">avenshift@proton.me</a></div></div></footer>
+<script>
+// Vaani demo parser - deterministic, client-side. Understands simple spoken
+// sale sentences in English, roman Hindi/Hinglish and common Devanagari.
+(function (root) {
+  'use strict';
+
+  var DEV_DIGITS = { '०': '0', '१': '1', '२': '2', '३': '3', '४': '4', '५': '5', '६': '6', '७': '7', '८': '8', '९': '9' };
+  var ONES = {
+    ek: 1, do: 2, teen: 3, tin: 3, char: 4, chaar: 4, paanch: 5, panch: 5, chhe: 6, chhah: 6, cheh: 6,
+    saat: 7, aath: 8, aat: 8, nau: 9, das: 10, gyarah: 11, gyara: 11, barah: 12, baarah: 12, terah: 13,
+    chaudah: 14, choudah: 14, pandrah: 15, solah: 16, satrah: 17, atharah: 18, athara: 18, unnis: 19,
+    bis: 20, bees: 20, ikkis: 21, baais: 22, bais: 22, teis: 23, chaubis: 24, pachchis: 25, pachis: 25,
+    chhabbis: 26, sattais: 27, satteis: 27, athais: 28, athaais: 28, untis: 29, tees: 30, ektis: 31,
+    battis: 32, battees: 32, tentis: 33, taintis: 33, chautis: 34, chauntis: 34, paintis: 35, chhattis: 36,
+    saintis: 37, saitis: 37, adtis: 38, artis: 38, untalis: 39, chalis: 40, chaalis: 40, ektalis: 41,
+    bayalis: 42, byalis: 42, tentalis: 43, taintalis: 43, chawalis: 44, chauvalis: 44, paintalis: 45,
+    chhiyalis: 46, chhiyalees: 46, saintalis: 47, saitalis: 47, adtalis: 48, artalis: 48, unchaas: 49,
+    pachaas: 50, pachas: 50, ikyavan: 51, bavan: 52, tirpan: 53, chouvan: 54, pachpan: 55, chhappan: 56,
+    sattavan: 57, athavan: 58, unsath: 59, saath: 60, sath: 60, iksath: 61, baasath: 62, tirset: 63,
+    chausath: 64, painsath: 65, chhiyasath: 66, sarsath: 67, arsath: 68, unhattar: 69, sattar: 70,
+    ikhattar: 71, bahattar: 72, tihattar: 73, chauhattar: 74, pachhattar: 75, chhihattar: 76,
+    sathattar: 77, athattar: 78, unyasi: 79, unnasi: 79, assi: 80, ikyasi: 81, byasi: 82, tirasi: 83,
+    chaurasi: 84, pachasi: 85, chhiyasi: 86, sattasi: 87, athasi: 88, navasi: 89, nabbe: 90, nabbey: 90,
+    ikyanve: 91, banve: 92, tiranve: 93, chauranve: 94, pachanve: 95, chhiyanve: 96, sattanve: 97,
+    athanve: 98, ninyanve: 99, ninaanve: 99,
+    one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+    eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17,
+    eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60,
+    seventy: 70, eighty: 80, ninety: 90
+  };
+  var DEV_ONES = {
+    'एक': 1, 'दो': 2, 'तीन': 3, 'चार': 4, 'पांच': 5, 'पाँच': 5, 'छह': 6, 'छे': 6, 'सात': 7,
+    'आठ': 8, 'नौ': 9, 'दस': 10, 'ग्यारह': 11, 'बारह': 12, 'तेरह': 13, 'चौदह': 14, 'पंद्रह': 15,
+    'सोलह': 16, 'सत्रह': 17, 'अठारह': 18, 'उन्नीस': 19, 'बीस': 20, 'इक्कीस': 21, 'बाईस': 22,
+    'तेईस': 23, 'चौबीस': 24, 'पच्चीस': 25, 'छब्बीस': 26, 'सत्ताईस': 27, 'अट्ठाईस': 28,
+    'उनतीस': 29, 'तीस': 30, 'इकतीस': 31, 'बत्तीस': 32, 'तैंतीस': 33, 'चौंतीस': 34, 'पैंतीस': 35,
+    'छत्तीस': 36, 'सैंतीस': 37, 'अड़तीस': 38, 'उनतालीस': 39, 'चालीस': 40, 'इकतालीस': 41,
+    'बयालीस': 42, 'तैंतालीस': 43, 'चवालीस': 44, 'पैंतालीस': 45, 'छियालीस': 46, 'सैंतालीस': 47,
+    'अड़तालीस': 48, 'उनचास': 49, 'पचास': 50, 'साठ': 60, 'सत्तर': 70, 'अस्सी': 80, 'नब्बे': 90,
+    'सौ': 100, 'हज़ार': 1000, 'हजार': 1000, 'लाख': 100000
+  };
+  var MULT = { sau: 100, so: 100, hazaar: 1000, hazar: 1000, hazar: 1000, lakh: 100000, laakh: 100000, thousand: 1000, hundred: 100 };
+  var SPECIAL = { dedh: 1.5, dhai: 2.5, sawa: 1.25, 'देढ़': 1.5, 'ढाई': 2.5, 'सवा': 1.25 };
+  var UNITS = ['strips', 'strip', 'bottles', 'bottle', 'packets', 'packet', 'pack', 'pieces', 'piece', 'pcs', 'pc',
+    'boxes', 'box', 'dabba', 'dabbe', 'dibbi', 'kilo', 'kilos', 'kg', 'litre', 'liter', 'litres', 'ml', 'gram', 'grams',
+    'dozen', 'items', 'item', 'cup', 'cups', 'glass', 'plate', 'plates', 'कप', 'sarī', 'saree', 'sarees', 'shirt', 'shirts', 'bag', 'bags', 'किलो', 'स्ट्रिप', 'बोतल', 'दब्बा', 'पैकेट', 'नग'];
+  var AMOUNT_WORDS = ['rupaye', 'rupay', 'rupees', 'rupee', 'rs', 'inr', 'रुपये', 'रुपया', 'रु', 'रुपए'];
+  var TOTAL_WORDS = ['total', 'kull', 'kul', 'कुल', 'टोटल', 'टोटल', 'kullu'];
+  var CASH_WORDS = ['cash', 'nagad', 'कैश', 'नगद', 'नकद', 'rokar', 'rokad', 'रोकड़'];
+  var UPI_WORDS = ['upi', 'online', 'phonepe', 'phone pe', 'gpay', 'google pay', 'googlepay', 'paytm', 'यूपीआई', 'ऑनलाइन', 'फोन पे', 'गूगल पे', 'पेटीएम', 'bhim'];
+  var FILLER = ['ke', 'ka', 'ki', 'k', 'of', 'for', 'per', 'at', 'the', 'a', 'ne', 'se', 'ko', 'mein', 'me', 'mai', 'becha', 'beche', 'bechi',
+    'cash', 'nagad', 'upi', 'online', 'phonepe', 'gpay', 'paytm', 'aaye', 'aaya', 'hui', 'hua', 'hue', 'mila', 'mile',
+    'bechein', 'bika', 'bike', 'biki', 'bikri', 'sold', 'sale', 'sales', 'di', 'diya', 'diye', 'liya', 'liye', 'hai',
+    'hain', 'ho', 'gaya', 'gayi', 'aaj', 'aj', 'today', 'kal', 'maine', 'maine', 'humne', 'and', 'aur', 'या', 'और', 'total', 'kull', 'kul', 'bikri', 'baaki', 'baki', 'बाकी',
+    'के', 'का', 'की', 'में', 'मैंने', 'बेचा', 'बेचे', 'बिका', 'है', 'हैं', 'आज', 'अाज', 'रुपये', 'रुपया', 'कैश', 'नगद', 'यूपीआई', 'ऑनलाइन', 'कुल', 'टोटल'];
+  var STOP_ITEM = ['i', 'we', 'he', 'she', 'they'];
+
+  function normDigits(s) {
+    return s.replace(/[०-९]/g, function (d) { return DEV_DIGITS[d] || d; });
+  }
+
+  function tokenize(text) {
+    var t = normDigits(String(text).toLowerCase());
+    t = t.replace(/₹/g, ' rupaye ').replace(/\brs\.?\b/g, ' rupaye ');
+    t = t.replace(/[\u0964!?;:\n]/g, ',');
+    t = t.replace(/\baur\b|\band\b|\bphir\b|\u0914\u0930/g, ',');
+    t = t.replace(/\./g, function (m, off) { var a = t[off - 1], b = t[off + 1]; return (/[0-9]/.test(a || '') && /[0-9]/.test(b || '')) ? '.' : ','; });
+    return t;
+  }
+
+  function wordValue(tok) {
+    if (tok == null || tok === '') return null;
+    if (/^\d+(\.\d+)?$/.test(tok)) return parseFloat(tok);
+    if (Object.prototype.hasOwnProperty.call(ONES, tok)) return ONES[tok];
+    if (Object.prototype.hasOwnProperty.call(DEV_ONES, tok)) return DEV_ONES[tok];
+    if (Object.prototype.hasOwnProperty.call(MULT, tok)) return MULT[tok];
+    return null;
+  }
+
+  // Parse a run of number-ish tokens into one number. Handles "do hazaar", "do sau pachaas", "dedh sau".
+  function parseNumberRun(tokens, i) {
+    var val = 0, cur = 0, consumed = 0, j = i, sawAny = false;
+    // special fractional multipliers: dedh sau, dhai hazaar, sawa sau
+    if (j < tokens.length && Object.prototype.hasOwnProperty.call(SPECIAL, tokens[j])) {
+      var base = SPECIAL[tokens[j]];
+      var next = j + 1 < tokens.length ? wordValue(tokens[j + 1]) : null;
+      if (next === 100 || next === 1000 || next === 100000) {
+        return { value: base * next, consumed: 2 };
+      }
+      if (base === 1.5 && (next == null)) return { value: 1.5, consumed: 1 };
+      return { value: base, consumed: 1 };
+    }
+    while (j < tokens.length) {
+      var w = tokens[j];
+      var v = wordValue(w);
+      if (v == null) break;
+      sawAny = true;
+      if (v === 100 || v === 1000 || v === 100000) {
+        cur = (cur === 0 ? 1 : cur) * v;
+      } else {
+        cur += v;
+      }
+      j++;
+    }
+    if (!sawAny) return null;
+    val = cur;
+    return { value: val, consumed: j - i };
+  }
+
+  function isUnit(tok) { return UNITS.indexOf(tok) !== -1; }
+  function isAmountWord(tok) { return AMOUNT_WORDS.indexOf(tok) !== -1; }
+  function isFiller(tok) { return FILLER.indexOf(tok) !== -1 || tok === ''; }
+
+  function cleanItem(words) {
+    var kept = [];
+    for (var k = 0; k < words.length; k++) {
+      var w = words[k];
+      if (isFiller(w)) continue;
+      if (wordValue(w) != null) continue;
+      if (isUnit(w) || isAmountWord(w)) continue;
+      if (STOP_ITEM.indexOf(w) !== -1) continue;
+      kept.push(w);
+    }
+    var name = kept.join(' ').trim();
+    if (name.length > 40) name = name.slice(0, 40).trim();
+    return name;
+  }
+
+  function parseSegment(seg) {
+    var raw = seg.split(/[^a-z\u0900-\u097F0-9.\u20B9]+/i).filter(Boolean);
+    if (!raw.length) return null;
+    var result = { items: [], declaredTotal: null, modes: {} };
+    var i = 0;
+    var segmentText = raw.join(' ');
+    var hasTotalWord = TOTAL_WORDS.some(function (w) { return segmentText.indexOf(w) !== -1; });
+    var mode = null;
+    if (UPI_WORDS.some(function (w) { return segmentText.indexOf(w) !== -1; })) mode = 'UPI';
+    else if (CASH_WORDS.some(function (w) { return segmentText.indexOf(w) !== -1; })) mode = 'Cash';
+
+    while (i < raw.length) {
+      var run = parseNumberRun(raw, i);
+      if (!run) { i++; continue; }
+      var after = raw[i + run.consumed];
+      var beforeWords = raw.slice(Math.max(0, i - 6), i);
+      if (after && isUnit(after)) {
+        // quantity: item name from preceding words
+        var nm = cleanItem(beforeWords);
+        var item = { item: nm || after, named: !!nm, qty: run.value, unit: after, amount: null, mode: mode };
+        // look ahead for amount in this segment
+        var j = i + run.consumed + 1;
+        while (j < raw.length) {
+          var r2 = parseNumberRun(raw, j);
+          if (r2 && isAmountWord(raw[j + r2.consumed] || '')) {
+            item.amount = r2.value;
+            i = j + r2.consumed; // skip past amount
+            break;
+          }
+          if (r2) break; // another number run not amount; stop
+          j++;
+        }
+        result.items.push(item);
+        i++;
+        continue;
+      }
+      if (after && isAmountWord(after)) {
+        // money mention
+        if (hasTotalWord && !mode && result.items.length === 0) {
+          result.declaredTotal = run.value;
+        } else {
+          // standalone amount; attach to item-less sale
+          var name = cleanItem(beforeWords);
+          if (name) {
+            result.items.push({ item: name, qty: null, unit: null, amount: run.value, mode: mode });
+          } else {
+            result.items.push({ item: null, qty: null, unit: null, amount: run.value, mode: mode });
+          }
+        }
+        i += run.consumed + 1;
+        continue;
+      }
+      if (mode && run.value != null) {
+        if (mode === 'Cash') result.cashBare = (result.cashBare || 0) + run.value;
+        else result.upiBare = (result.upiBare || 0) + run.value;
+      }
+      i += run.consumed;
+    }
+    return result;
+  }
+
+  function summarize(text) {
+    var t = tokenize(text);
+    var segments = t.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    var items = [], declaredTotal = null, cash = 0, upi = 0;
+    segments.forEach(function (seg) {
+      var r = parseSegment(seg);
+      if (!r) return;
+      if (r.declaredTotal != null) declaredTotal = r.declaredTotal;
+      if (r.cashBare) cash += r.cashBare;
+      if (r.upiBare) upi += r.upiBare;
+      r.items.forEach(function (it) {
+        // payment-only mention: no item name but has a mode and amount
+        if (it.item == null && it.qty == null && it.unit == null && it.mode && it.amount != null) {
+          if (it.mode === 'Cash') cash += it.amount; else upi += it.amount;
+          return;
+        }
+        items.push(it);
+        if (it.amount != null) {
+          if (it.mode === 'Cash') cash += it.amount;
+          else if (it.mode === 'UPI') upi += it.amount;
+        }
+      });
+    });
+    var itemTotal = items.reduce(function (s, it) { return s + (it.amount || 0); }, 0);
+    var total = declaredTotal != null ? declaredTotal : itemTotal;
+    // single segment like "cash 300 rupaye upi 250 rupaye" may carry both modes via item-less entries
+    return {
+      items: items,
+      total: total,
+      itemTotal: itemTotal,
+      declaredTotal: declaredTotal,
+      cash: cash,
+      upi: upi,
+      itemCount: items.filter(function (it) { return it.item; }).length,
+      topItem: topItem(items)
+    };
+  }
+
+  function topItem(items) {
+    var best = null;
+    items.forEach(function (it) {
+      if (!it.item || it.named === false) return;
+      var v = it.amount != null ? it.amount : (it.qty || 0);
+      if (!best || v > best.v) best = { name: it.item, v: v };
+    });
+    return best ? best.name : null;
+  }
+
+  root.VaaniParser = { summarize: summarize };
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var fmt = function (n) { return '₹' + Math.round(n).toLocaleString('en-IN'); };
+  var SAMPLES = {
+    en: 'Today I sold Paracetamol 10 strips for 250 rupees, Crocin 5 strips for 120 rupees, and cough syrup 2 bottles for 180 rupees. Cash 300 rupees, UPI 250 rupees.',
+    hi: 'Aaj paracetamol ke 10 strip beche 250 rupaye, crocin ke 5 strip 120 rupaye, aur khasi ki syrup 2 bottle 180 rupaye. Cash mein 300 rupaye aaye, UPI mein 250 rupaye.',
+    mix: 'Maggi 20 packet 240 rupaye, doodh 5 litre teen sau rupaye, atta 2 kilo 90 rupaye. Total cash 400 rupaye, baaki UPI mein 170 rupaye.'
+  };
+  var lastSummary = null;
+
+  // --- speech recognition ---
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var rec = null, listening = false;
+  var micBtn = $('mic'), micnote = $('micnote'), transcript = $('transcript');
+  if (!SR) {
+    micBtn.style.opacity = '.45';
+    micBtn.style.cursor = 'not-allowed';
+    micnote.innerHTML = '<b>Live mic is not available in this browser.</b><br>Chrome or Edge can hear you; every browser can still use the samples below and the "Make my summary" button.';
+  } else {
+    micBtn.addEventListener('click', function () {
+      if (listening) { try { rec.stop(); } catch (e) {} return; }
+      rec = new SR();
+      rec.lang = $('lang').value;
+      rec.interimResults = true;
+      rec.continuous = true;
+      var base = transcript.value ? transcript.value.replace(/\s+$/, '') + ' ' : '';
+      rec.onresult = function (ev) {
+        var interim = '', final = '';
+        for (var i = ev.resultIndex; i < ev.results.length; i++) {
+          if (ev.results[i].isFinal) final += ev.results[i][0].transcript + ' ';
+          else interim += ev.results[i][0].transcript;
+        }
+        transcript.value = base + final + interim;
+      };
+      rec.onerror = function (ev) {
+        listening = false; micBtn.classList.remove('listening');
+        if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
+          micnote.innerHTML = '<b>Mic permission was blocked.</b><br>Allow the microphone in your browser, or use a sample below.';
+        } else if (ev.error !== 'aborted') {
+          micnote.innerHTML = '<b>Listening stopped (' + ev.error + ').</b><br>You can tap the mic to try again, or use a sample below.';
+        }
+      };
+      rec.onend = function () { listening = false; micBtn.classList.remove('listening'); };
+      try {
+        rec.start();
+        listening = true; micBtn.classList.add('listening');
+        micnote.innerHTML = '<b>Listening…</b> tap the mic again to stop. Speak one sale or the whole day.';
+      } catch (e) {
+        micnote.innerHTML = '<b>Could not start the mic.</b><br>Try Chrome or Edge, or use a sample below.';
+      }
+    });
+  }
+
+  // --- samples ---
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (chip) {
+    chip.addEventListener('click', function () {
+      var lang = chip.getAttribute('data-sample');
+      transcript.value = SAMPLES[lang];
+      if (lang === 'hi') $('lang').value = 'hi-IN';
+      else $('lang').value = 'en-IN';
+      render();
+    });
+  });
+
+  // --- summarize + render ---
+  function render() {
+    var text = transcript.value.trim();
+    var box = $('results');
+    if (!text) { box.classList.remove('show'); return; }
+    var s = window.VaaniParser.summarize(text);
+    lastSummary = s;
+    $('r-total').textContent = fmt(s.total);
+    $('r-count').textContent = String(s.itemCount || (s.items.length ? s.items.length : 0));
+    $('r-cash').textContent = fmt(s.cash);
+    $('r-upi').textContent = fmt(s.upi);
+    $('r-top').innerHTML = s.topItem ? 'Top item: <b>' + esc(s.topItem) + '</b>' : (s.items.length ? '' : 'No item names found - try "item ke X unit, Y rupaye".');
+    var rows = '';
+    s.items.forEach(function (it) {
+      if (!it.item && it.amount == null) return;
+      rows += '<tr><td>' + esc(it.item || 'sale') + '</td><td class="num">' + (it.qty != null ? esc(String(it.qty)) + ' ' + esc(it.unit || '') : '-') + '</td><td class="num">' + (it.amount != null ? fmt(it.amount) : '-') + '</td><td>' + (it.mode || '-') + '</td></tr>';
+    });
+    $('r-rows').innerHTML = rows;
+    var tbl = $('r-table');
+    tbl.style.display = rows ? '' : 'none';
+    var warn = $('r-warn');
+    if (s.declaredTotal != null && s.itemTotal > 0 && Math.abs(s.declaredTotal - s.itemTotal) > 1) {
+      warn.style.display = '';
+      warn.textContent = 'You said the total is ' + fmt(s.declaredTotal) + ', but the listed items add up to ' + fmt(s.itemTotal) + '. Check the numbers above.';
+    } else { warn.style.display = 'none'; }
+    box.classList.add('show');
+  }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  $('summarize').addEventListener('click', render);
+
+  // --- spoken reply ---
+  function replyText(s, lang) {
+    var parts;
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Vaani by Avenshift: speak your daily sales in Hindi or English, get your numbers. Free browser demo - no upload, no account."><title>Vaani by Avenshift | Voice-note sales demo</title><style>
+:root{--bg:#101412;--ink:#f3f5ed;--muted:#b5bdb3;--lime:#ddff94;--line:#343d33}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}a{color:inherit;text-decoration:none}button{font-family:inherit}button,a{touch-action:manipulation}header,main,footer{max-width:1240px;margin:auto;padding:0 54px}header{display:flex;align-items:center;justify-content:space-between;height:104px;border-bottom:1px solid var(--line)}.brand{font-size:24px;font-weight:700;letter-spacing:-1px;display:flex;align-items:center;gap:12px}.brand small{font-size:11px;font-weight:400;color:var(--muted);letter-spacing:2px;margin-left:4px}.mark{width:32px;height:32px}.nav{display:flex;gap:32px;font-size:13px}.nav a:hover{color:var(--lime)}.status{font:11px monospace;letter-spacing:1px;border:1px solid var(--line);padding:10px 13px;border-radius:30px;color:var(--lime)}
+.hero{padding:70px 0 60px;display:grid;grid-template-columns:1.2fr 1fr;gap:70px;align-items:center}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin-bottom:26px}.hero h1{font-family:Georgia,serif;font-weight:400;font-size:64px;line-height:1.03;letter-spacing:-2.5px;margin:0 0 24px}.hero h1 em{font-weight:400;color:var(--lime)}.intro{font-size:17px;line-height:1.65;color:var(--muted);max-width:460px}.hindi-line{font-size:20px;color:var(--ink);margin-top:18px;font-family:Georgia,serif}.side{border:1px solid #526049;background:linear-gradient(145deg,#273524,#18201a);border-radius:22px;padding:27px}.side h2{font-family:Georgia,serif;font-weight:400;font-size:26px;letter-spacing:-.5px;margin:4px 0 14px}.side p{font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 14px}.side .tick{display:flex;gap:10px;font-size:13px;color:var(--muted);padding:7px 0;border-top:1px solid #2a332a}.side .tick b{color:var(--lime);font-weight:400}
+.demo{border:1px solid var(--line);border-radius:22px;padding:34px;margin:10px 0 70px;background:#141a15}.demo-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:22px}.demo-head h2{font-family:Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-1px;margin:0}.langrow{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--muted)}select{background:#101812;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+.microw{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-bottom:18px}.mic{width:96px;height:96px;border-radius:50%;border:none;background:var(--lime);color:var(--bg);font-size:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s}.mic:hover{transform:scale(1.05)}.mic.listening{background:#ff8f6b;animation:pulse 1.2s infinite}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,143,107,.5)}70%{box-shadow:0 0 0 22px rgba(255,143,107,0)}100%{box-shadow:0 0 0 0 rgba(255,143,107,0)}}.micnote{font-size:12px;color:var(--muted);line-height:1.6;max-width:340px}.micnote b{color:var(--ink);font-weight:400}
+textarea{width:100%;min-height:96px;background:#101812;border:1px solid var(--line);border-radius:12px;color:var(--ink);font-size:16px;line-height:1.6;padding:16px;resize:vertical}textarea:focus{outline:2px solid var(--lime);outline-offset:2px}.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center}.btn{background:var(--lime);color:var(--bg);border:none;padding:15px 26px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}.btn:hover{background:#edffc9}.btn.ghost{background:transparent;color:var(--lime);border:1px solid var(--line);font-weight:400}.btn.ghost:hover{border-color:var(--lime)}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:30px;padding:9px 15px;font-size:12px;cursor:pointer}.chip:hover{color:var(--lime);border-color:var(--lime)}
+.results{margin-top:28px;display:none}.results.show{display:block}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.card{border:1px solid var(--line);border-radius:10px;padding:18px}.card small{font:10px monospace;color:var(--muted);letter-spacing:1px}.card b{display:block;font-family:Georgia,serif;font-weight:400;font-size:30px;color:var(--lime);margin-top:8px;letter-spacing:-.5px}.toptext{font-size:14px;color:var(--muted);margin:4px 0 16px}.toptext b{color:var(--ink);font-weight:400}table{width:100%;border-collapse:collapse;font-size:14px}th{font:10px monospace;color:var(--muted);text-align:left;letter-spacing:1px;padding:8px 6px;border-bottom:1px solid var(--line)}td{padding:10px 6px;border-bottom:1px solid #232b23;color:var(--ink)}td.num,th.num{text-align:right}.warnline{font:11px monospace;color:#ffcf8f;margin-top:14px;line-height:1.6}.fineline{font:11px monospace;color:var(--muted);margin-top:14px;line-height:1.6}
+.section{padding:60px 0;border-top:1px solid var(--line)}.section h2{font-family:Georgia,serif;font-size:38px;line-height:1.12;font-weight:400;letter-spacing:-1px;margin:0 0 30px}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.step{border:1px solid var(--line);border-radius:10px;padding:22px}.step small{color:var(--lime);font:11px monospace}.step h3{font-size:16px;font-weight:400;margin:18px 0 10px}.step p{font-size:12px;line-height:1.6;color:var(--muted)}.notes{display:grid;grid-template-columns:1fr 1fr;gap:16px}.note{background:#1b221c;padding:24px;border-radius:8px}.note h3{font-size:15px;font-weight:400;margin:0 0 10px}.note p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}
+.contact{background:var(--lime);color:var(--bg);border-radius:14px;padding:42px;display:flex;justify-content:space-between;gap:30px;align-items:center;margin:60px 0}.contact h2{font-family:Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-.8px;margin:0 0 14px}.contact a{font-size:14px;border-bottom:1px solid;padding-bottom:8px;white-space:nowrap}.contact p{font-size:13px;margin:0;opacity:.75}.footer-inner{padding:30px 0 44px;display:flex;justify-content:space-between;gap:25px;color:var(--muted);font-size:11px;line-height:1.7}
+@media(max-width:850px){header,main,footer{padding:0 25px}.hero{grid-template-columns:1fr;gap:32px;padding:50px 0}.hero h1{font-size:46px}.cards{grid-template-columns:repeat(2,1fr)}.flow,.notes{grid-template-columns:1fr}.demo{padding:22px}.contact{padding:28px;display:block}.contact a{display:inline-block;margin-top:22px}.status{display:none}}
+</style></head><body>
+<header><a class="brand" href="../"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path fill="#ddff94" d="M14 2h5l13 28h-8L16 11 8 30H0z"/><path fill="#101412" d="M15 22h10l3 6H12z"/></svg>vaani<small>BY AVENSHIFT</small></a><nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#notes">Honest notes</a><a href="../">avenshift ↗</a></nav><span class="status">LIVE BROWSER DEMO</span></header>
+<main>
+<section class="hero"><div><div class="eyebrow">Vaani · Voice-note sales assistant</div><h1>Speak your sales.<br><em>Get your numbers.</em></h1><p class="intro">Made for local shops and medical stores. Say what you sold, in Hindi or English, and Vaani writes it down, adds it up and reads it back. This page is a free demo that runs fully in your browser.</p><div class="hindi-line">बोलिए — Vaani लिखेगी, जोड़ेगी, सुनाएगी।</div></div>
+<div class="side"><h2>No app. No account.<br>No upload.</h2><p>The demo uses your browser's own speech service to hear you, and this page to do the maths. Nothing is recorded or sent to us.</p><div class="tick"><b>01</b> Hindi, English, Hinglish, मराठी</div><div class="tick"><b>02</b> Cash vs UPI split</div><div class="tick"><b>03</b> Spoken reply in your language</div></div></section>
+<section class="demo" id="demo"><div class="demo-head"><h2>Try it now</h2><div class="langrow"><label for="lang">Language</label><select id="lang"><option value="en-IN">English (India)</option><option value="hi-IN" selected>हिन्दी</option><option value="mr-IN">मराठी</option></select></div></div>
+<div class="microw"><button class="mic" id="mic" aria-label="Start or stop listening">🎙</button><div class="micnote" id="micnote"><b>Tap the mic and say a sale.</b><br>Example: "Aaj paracetamol ke 10 strip beche 250 rupaye." Tap again to stop. Live mic needs Chrome or Edge; on other browsers, use a sample below.</div></div>
+<textarea id="transcript" aria-label="What you said" placeholder="Your words appear here. You can edit them before making the summary."></textarea>
+<div class="btnrow"><button class="btn" id="summarize">Make my summary</button><div class="chips"><button class="chip" data-sample="hi">Sample · हिन्दी</button><button class="chip" data-sample="en">Sample · English</button><button class="chip" data-sample="mix">Sample · Kirana</button></div></div>
+<div class="results" id="results"><div class="cards"><div class="card"><small>TOTAL SALE</small><b id="r-total">₹0</b></div><div class="card"><small>ITEMS SOLD</small><b id="r-count">0</b></div><div class="card"><small>CASH</small><b id="r-cash">₹0</b></div><div class="card"><small>UPI / ONLINE</small><b id="r-upi">₹0</b></div></div>
+<div class="toptext" id="r-top"></div><table id="r-table"><thead><tr><th>ITEM</th><th class="num">QTY</th><th class="num">AMOUNT</th><th>PAYMENT</th></tr></thead><tbody id="r-rows"></tbody></table>
+<div class="warnline" id="r-warn" style="display:none"></div>
+<div class="btnrow"><button class="btn ghost" id="speak">🔊 Sunaiye · Listen</button><button class="btn ghost" id="copy">Copy summary text</button></div>
+<div class="fineline">The spoken reply uses your device's own voice. Hindi and Marathi voices depend on your phone or computer.</div></div>
+<div class="fineline">Demo runs fully in your browser. Audio is handled by your browser's speech service; this page stores nothing and sends nothing to us.</div></section>
+<section class="section" id="how"><div class="eyebrow">How it works</div><h2>Bolo. Likho. Jodo.</h2><div class="flow"><article class="step"><small>01 / BOL</small><h3>Say the sale</h3><p>"Crocin ke 5 strip, 120 rupaye." One line per sale, or the whole day at once.</p></article><article class="step"><small>02 / LIKHO</small><h3>Vaani writes it</h3><p>Your words become text you can check and fix before anything is added up.</p></article><article class="step"><small>03 / JODO</small><h3>Get the numbers</h3><p>Total, items, cash vs UPI, and a spoken reply you can listen to or copy for WhatsApp.</p></article></div></section>
+<section class="section" id="notes"><div class="eyebrow">Honest notes</div><h2>What this demo is.<br>And what it is not.</h2><div class="notes"><article class="note"><h3>A real demo, a small one.</h3><p>This page understands simple sale sentences in English, Hindi and Hinglish, and does the addition itself. It can mishear or mis-add. Always check the numbers before trusting them.</p></article><article class="note"><h3>Your words stay with you.</h3><p>Listening is done by your browser's speech service (on Chrome, that is Google's speech recognizer). This page itself saves and sends nothing. The full product will say clearly where data goes before it asks for any.</p></article><article class="note"><h3>Voices depend on your device.</h3><p>The spoken reply uses the voices already on your phone or computer. Many devices have a Hindi voice; fewer have Marathi. If yours does not, the reply still plays in the closest voice available.</p></article><article class="note"><h3>The product is in development.</h3><p>Vaani is being built by Avenshift for shop owners who would rather speak than type. This demo shows the idea; the full product, with saved history and better understanding, is not live yet.</p></article></div></section>
+<section class="contact"><div><h2>Run a shop? We are listening.</h2><p>Vaani by Avenshift. Early, honest, in development.</p></div><a href="mailto:avenshift@proton.me">avenshift@proton.me ↗</a></section>
+</main>
+<footer><div class="footer-inner"><div>Vaani · a project by Avenshift.<br>Independent project, not a registered company.</div><div><a href="../">avenshift ↗</a><br><a href="mailto:avenshift@proton.me">avenshift@proton.me</a></div></div></footer>
+<script>
+// Vaani demo parser - deterministic, client-side. Understands simple spoken
+// sale sentences in English, roman Hindi/Hinglish and common Devanagari.
+(function (root) {
+  'use strict';
+
+  var DEV_DIGITS = { '०': '0', '१': '1', '२': '2', '३': '3', '४': '4', '५': '5', '६': '6', '७': '7', '८': '8', '९': '9' };
+  var ONES = {
+    ek: 1, do: 2, teen: 3, tin: 3, char: 4, chaar: 4, paanch: 5, panch: 5, chhe: 6, chhah: 6, cheh: 6,
+    saat: 7, aath: 8, aat: 8, nau: 9, das: 10, gyarah: 11, gyara: 11, barah: 12, baarah: 12, terah: 13,
+    chaudah: 14, choudah: 14, pandrah: 15, solah: 16, satrah: 17, atharah: 18, athara: 18, unnis: 19,
+    bis: 20, bees: 20, ikkis: 21, baais: 22, bais: 22, teis: 23, chaubis: 24, pachchis: 25, pachis: 25,
+    chhabbis: 26, sattais: 27, satteis: 27, athais: 28, athaais: 28, untis: 29, tees: 30, ektis: 31,
+    battis: 32, battees: 32, tentis: 33, taintis: 33, chautis: 34, chauntis: 34, paintis: 35, chhattis: 36,
+    saintis: 37, saitis: 37, adtis: 38, artis: 38, untalis: 39, chalis: 40, chaalis: 40, ektalis: 41,
+    bayalis: 42, byalis: 42, tentalis: 43, taintalis: 43, chawalis: 44, chauvalis: 44, paintalis: 45,
+    chhiyalis: 46, chhiyalees: 46, saintalis: 47, saitalis: 47, adtalis: 48, artalis: 48, unchaas: 49,
+    pachaas: 50, pachas: 50, ikyavan: 51, bavan: 52, tirpan: 53, chouvan: 54, pachpan: 55, chhappan: 56,
+    sattavan: 57, athavan: 58, unsath: 59, saath: 60, sath: 60, iksath: 61, baasath: 62, tirset: 63,
+    chausath: 64, painsath: 65, chhiyasath: 66, sarsath: 67, arsath: 68, unhattar: 69, sattar: 70,
+    ikhattar: 71, bahattar: 72, tihattar: 73, chauhattar: 74, pachhattar: 75, chhihattar: 76,
+    sathattar: 77, athattar: 78, unyasi: 79, unnasi: 79, assi: 80, ikyasi: 81, byasi: 82, tirasi: 83,
+    chaurasi: 84, pachasi: 85, chhiyasi: 86, sattasi: 87, athasi: 88, navasi: 89, nabbe: 90, nabbey: 90,
+    ikyanve: 91, banve: 92, tiranve: 93, chauranve: 94, pachanve: 95, chhiyanve: 96, sattanve: 97,
+    athanve: 98, ninyanve: 99, ninaanve: 99,
+    one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+    eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17,
+    eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60,
+    seventy: 70, eighty: 80, ninety: 90
+  };
+  var DEV_ONES = {
+    'एक': 1, 'दो': 2, 'तीन': 3, 'चार': 4, 'पांच': 5, 'पाँच': 5, 'छह': 6, 'छे': 6, 'सात': 7,
+    'आठ': 8, 'नौ': 9, 'दस': 10, 'ग्यारह': 11, 'बारह': 12, 'तेरह': 13, 'चौदह': 14, 'पंद्रह': 15,
+    'सोलह': 16, 'सत्रह': 17, 'अठारह': 18, 'उन्नीस': 19, 'बीस': 20, 'इक्कीस': 21, 'बाईस': 22,
+    'तेईस': 23, 'चौबीस': 24, 'पच्चीस': 25, 'छब्बीस': 26, 'सत्ताईस': 27, 'अट्ठाईस': 28,
+    'उनतीस': 29, 'तीस': 30, 'इकतीस': 31, 'बत्तीस': 32, 'तैंतीस': 33, 'चौंतीस': 34, 'पैंतीस': 35,
+    'छत्तीस': 36, 'सैंतीस': 37, 'अड़तीस': 38, 'उनतालीस': 39, 'चालीस': 40, 'इकतालीस': 41,
+    'बयालीस': 42, 'तैंतालीस': 43, 'चवालीस': 44, 'पैंतालीस': 45, 'छियालीस': 46, 'सैंतालीस': 47,
+    'अड़तालीस': 48, 'उनचास': 49, 'पचास': 50, 'साठ': 60, 'सत्तर': 70, 'अस्सी': 80, 'नब्बे': 90,
+    'सौ': 100, 'हज़ार': 1000, 'हजार': 1000, 'लाख': 100000
+  };
+  var MULT = { sau: 100, so: 100, hazaar: 1000, hazar: 1000, hazar: 1000, lakh: 100000, laakh: 100000, thousand: 1000, hundred: 100 };
+  var SPECIAL = { dedh: 1.5, dhai: 2.5, sawa: 1.25, 'देढ़': 1.5, 'ढाई': 2.5, 'सवा': 1.25 };
+  var UNITS = ['strips', 'strip', 'bottles', 'bottle', 'packets', 'packet', 'pack', 'pieces', 'piece', 'pcs', 'pc',
+    'boxes', 'box', 'dabba', 'dabbe', 'dibbi', 'kilo', 'kilos', 'kg', 'litre', 'liter', 'litres', 'ml', 'gram', 'grams',
+    'dozen', 'items', 'item', 'cup', 'cups', 'glass', 'plate', 'plates', 'कप', 'sarī', 'saree', 'sarees', 'shirt', 'shirts', 'bag', 'bags', 'किलो', 'स्ट्रिप', 'बोतल', 'दब्बा', 'पैकेट', 'नग'];
+  var AMOUNT_WORDS = ['rupaye', 'rupay', 'rupees', 'rupee', 'rs', 'inr', 'रुपये', 'रुपया', 'रु', 'रुपए'];
+  var TOTAL_WORDS = ['total', 'kull', 'kul', 'कुल', 'टोटल', 'टोटल', 'kullu'];
+  var CASH_WORDS = ['cash', 'nagad', 'कैश', 'नगद', 'नकद', 'rokar', 'rokad', 'रोकड़'];
+  var UPI_WORDS = ['upi', 'online', 'phonepe', 'phone pe', 'gpay', 'google pay', 'googlepay', 'paytm', 'यूपीआई', 'ऑनलाइन', 'फोन पे', 'गूगल पे', 'पेटीएम', 'bhim'];
+  var FILLER = ['ke', 'ka', 'ki', 'k', 'of', 'for', 'per', 'at', 'the', 'a', 'ne', 'se', 'ko', 'mein', 'me', 'mai', 'becha', 'beche', 'bechi',
+    'cash', 'nagad', 'upi', 'online', 'phonepe', 'gpay', 'paytm', 'aaye', 'aaya', 'hui', 'hua', 'hue', 'mila', 'mile',
+    'bechein', 'bika', 'bike', 'biki', 'bikri', 'sold', 'sale', 'sales', 'di', 'diya', 'diye', 'liya', 'liye', 'hai',
+    'hain', 'ho', 'gaya', 'gayi', 'aaj', 'aj', 'today', 'kal', 'maine', 'maine', 'humne', 'and', 'aur', 'या', 'और', 'total', 'kull', 'kul', 'bikri', 'baaki', 'baki', 'बाकी',
+    'के', 'का', 'की', 'में', 'मैंने', 'बेचा', 'बेचे', 'बिका', 'है', 'हैं', 'आज', 'अाज', 'रुपये', 'रुपया', 'कैश', 'नगद', 'यूपीआई', 'ऑनलाइन', 'कुल', 'टोटल'];
+  var STOP_ITEM = ['i', 'we', 'he', 'she', 'they'];
+
+  function normDigits(s) {
+    return s.replace(/[०-९]/g, function (d) { return DEV_DIGITS[d] || d; });
+  }
+
+  function tokenize(text) {
+    var t = normDigits(String(text).toLowerCase());
+    t = t.replace(/₹/g, ' rupaye ').replace(/\brs\.?\b/g, ' rupaye ');
+    t = t.replace(/[\u0964!?;:\n]/g, ',');
+    t = t.replace(/\baur\b|\band\b|\bphir\b|\u0914\u0930/g, ',');
+    t = t.replace(/\./g, function (m, off) { var a = t[off - 1], b = t[off + 1]; return (/[0-9]/.test(a || '') && /[0-9]/.test(b || '')) ? '.' : ','; });
+    return t;
+  }
+
+  function wordValue(tok) {
+    if (tok == null || tok === '') return null;
+    if (/^\d+(\.\d+)?$/.test(tok)) return parseFloat(tok);
+    if (Object.prototype.hasOwnProperty.call(ONES, tok)) return ONES[tok];
+    if (Object.prototype.hasOwnProperty.call(DEV_ONES, tok)) return DEV_ONES[tok];
+    if (Object.prototype.hasOwnProperty.call(MULT, tok)) return MULT[tok];
+    return null;
+  }
+
+  // Parse a run of number-ish tokens into one number. Handles "do hazaar", "do sau pachaas", "dedh sau".
+  function parseNumberRun(tokens, i) {
+    var val = 0, cur = 0, consumed = 0, j = i, sawAny = false;
+    // special fractional multipliers: dedh sau, dhai hazaar, sawa sau
+    if (j < tokens.length && Object.prototype.hasOwnProperty.call(SPECIAL, tokens[j])) {
+      var base = SPECIAL[tokens[j]];
+      var next = j + 1 < tokens.length ? wordValue(tokens[j + 1]) : null;
+      if (next === 100 || next === 1000 || next === 100000) {
+        return { value: base * next, consumed: 2 };
+      }
+      if (base === 1.5 && (next == null)) return { value: 1.5, consumed: 1 };
+      return { value: base, consumed: 1 };
+    }
+    while (j < tokens.length) {
+      var w = tokens[j];
+      var v = wordValue(w);
+      if (v == null) break;
+      sawAny = true;
+      if (v === 100 || v === 1000 || v === 100000) {
+        cur = (cur === 0 ? 1 : cur) * v;
+      } else {
+        cur += v;
+      }
+      j++;
+    }
+    if (!sawAny) return null;
+    val = cur;
+    return { value: val, consumed: j - i };
+  }
+
+  function isUnit(tok) { return UNITS.indexOf(tok) !== -1; }
+  function isAmountWord(tok) { return AMOUNT_WORDS.indexOf(tok) !== -1; }
+  function isFiller(tok) { return FILLER.indexOf(tok) !== -1 || tok === ''; }
+
+  function cleanItem(words) {
+    var kept = [];
+    for (var k = 0; k < words.length; k++) {
+      var w = words[k];
+      if (isFiller(w)) continue;
+      if (wordValue(w) != null) continue;
+      if (isUnit(w) || isAmountWord(w)) continue;
+      if (STOP_ITEM.indexOf(w) !== -1) continue;
+      kept.push(w);
+    }
+    var name = kept.join(' ').trim();
+    if (name.length > 40) name = name.slice(0, 40).trim();
+    return name;
+  }
+
+  function parseSegment(seg) {
+    var raw = seg.split(/[^a-z\u0900-\u097F0-9.\u20B9]+/i).filter(Boolean);
+    if (!raw.length) return null;
+    var result = { items: [], declaredTotal: null, modes: {} };
+    var i = 0;
+    var segmentText = raw.join(' ');
+    var hasTotalWord = TOTAL_WORDS.some(function (w) { return segmentText.indexOf(w) !== -1; });
+    var mode = null;
+    if (UPI_WORDS.some(function (w) { return segmentText.indexOf(w) !== -1; })) mode = 'UPI';
+    else if (CASH_WORDS.some(function (w) { return segmentText.indexOf(w) !== -1; })) mode = 'Cash';
+
+    while (i < raw.length) {
+      var run = parseNumberRun(raw, i);
+      if (!run) { i++; continue; }
+      var after = raw[i + run.consumed];
+      var beforeWords = raw.slice(Math.max(0, i - 6), i);
+      if (after && isUnit(after)) {
+        // quantity: item name from preceding words
+        var nm = cleanItem(beforeWords);
+        var item = { item: nm || after, named: !!nm, qty: run.value, unit: after, amount: null, mode: mode };
+        // look ahead for amount in this segment
+        var j = i + run.consumed + 1;
+        while (j < raw.length) {
+          var r2 = parseNumberRun(raw, j);
+          if (r2 && isAmountWord(raw[j + r2.consumed] || '')) {
+            item.amount = r2.value;
+            i = j + r2.consumed; // skip past amount
+            break;
+          }
+          if (r2) break; // another number run not amount; stop
+          j++;
+        }
+        result.items.push(item);
+        i++;
+        continue;
+      }
+      if (after && isAmountWord(after)) {
+        // money mention
+        if (hasTotalWord && !mode && result.items.length === 0) {
+          result.declaredTotal = run.value;
+        } else {
+          // standalone amount; attach to item-less sale
+          var name = cleanItem(beforeWords);
+          if (name) {
+            result.items.push({ item: name, qty: null, unit: null, amount: run.value, mode: mode });
+          } else {
+            result.items.push({ item: null, qty: null, unit: null, amount: run.value, mode: mode });
+          }
+        }
+        i += run.consumed + 1;
+        continue;
+      }
+      if (mode && run.value != null) {
+        if (mode === 'Cash') result.cashBare = (result.cashBare || 0) + run.value;
+        else result.upiBare = (result.upiBare || 0) + run.value;
+      }
+      i += run.consumed;
+    }
+    return result;
+  }
+
+  function summarize(text) {
+    var t = tokenize(text);
+    var segments = t.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    var items = [], declaredTotal = null, cash = 0, upi = 0;
+    segments.forEach(function (seg) {
+      var r = parseSegment(seg);
+      if (!r) return;
+      if (r.declaredTotal != null) declaredTotal = r.declaredTotal;
+      if (r.cashBare) cash += r.cashBare;
+      if (r.upiBare) upi += r.upiBare;
+      r.items.forEach(function (it) {
+        // payment-only mention: no item name but has a mode and amount
+        if (it.item == null && it.qty == null && it.unit == null && it.mode && it.amount != null) {
+          if (it.mode === 'Cash') cash += it.amount; else upi += it.amount;
+          return;
+        }
+        items.push(it);
+        if (it.amount != null) {
+          if (it.mode === 'Cash') cash += it.amount;
+          else if (it.mode === 'UPI') upi += it.amount;
+        }
+      });
+    });
+    var itemTotal = items.reduce(function (s, it) { return s + (it.amount || 0); }, 0);
+    var total = declaredTotal != null ? declaredTotal : itemTotal;
+    // single segment like "cash 300 rupaye upi 250 rupaye" may carry both modes via item-less entries
+    return {
+      items: items,
+      total: total,
+      itemTotal: itemTotal,
+      declaredTotal: declaredTotal,
+      cash: cash,
+      upi: upi,
+      itemCount: items.filter(function (it) { return it.item; }).length,
+      topItem: topItem(items)
+    };
+  }
+
+  function topItem(items) {
+    var best = null;
+    items.forEach(function (it) {
+      if (!it.item || it.named === false) return;
+      var v = it.amount != null ? it.amount : (it.qty || 0);
+      if (!best || v > best.v) best = { name: it.item, v: v };
+    });
+    return best ? best.name : null;
+  }
+
+  root.VaaniParser = { summarize: summarize };
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var fmt = function (n) { return '₹' + Math.round(n).toLocaleString('en-IN'); };
+  var SAMPLES = {
+    en: 'Today I sold Paracetamol 10 strips for 250 rupees, Crocin 5 strips for 120 rupees, and cough syrup 2 bottles for 180 rupees. Cash 300 rupees, UPI 250 rupees.',
+    hi: 'Aaj paracetamol ke 10 strip beche 250 rupaye, crocin ke 5 strip 120 rupaye, aur khasi ki syrup 2 bottle 180 rupaye. Cash mein 300 rupaye aaye, UPI mein 250 rupaye.',
+    mix: 'Maggi 20 packet 240 rupaye, doodh 5 litre teen sau rupaye, atta 2 kilo 90 rupaye. Total cash 400 rupaye, baaki UPI mein 170 rupaye.'
+  };
+  var lastSummary = null;
+
+  // --- speech recognition ---
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var rec = null, listening = false;
+  var micBtn = $('mic'), micnote = $('micnote'), transcript = $('transcript');
+  if (!SR) {
+    micBtn.style.opacity = '.45';
+    micBtn.style.cursor = 'not-allowed';
+    micnote.innerHTML = '<b>Live mic is not available in this browser.</b><br>Chrome or Edge can hear you; every browser can still use the samples below and the "Make my summary" button.';
+  } else {
+    micBtn.addEventListener('click', function () {
+      if (listening) { try { rec.stop(); } catch (e) {} return; }
+      rec = new SR();
+      rec.lang = $('lang').value;
+      rec.interimResults = true;
+      rec.continuous = true;
+      var base = transcript.value ? transcript.value.replace(/\s+$/, '') + ' ' : '';
+      rec.onresult = function (ev) {
+        var interim = '', final = '';
+        for (var i = ev.resultIndex; i < ev.results.length; i++) {
+          if (ev.results[i].isFinal) final += ev.results[i][0].transcript + ' ';
+          else interim += ev.results[i][0].transcript;
+        }
+        transcript.value = base + final + interim;
+      };
+      rec.onerror = function (ev) {
+        listening = false; micBtn.classList.remove('listening');
+        if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
+          micnote.innerHTML = '<b>Mic permission was blocked.</b><br>Allow the microphone in your browser, or use a sample below.';
+        } else if (ev.error !== 'aborted') {
+          micnote.innerHTML = '<b>Listening stopped (' + ev.error + ').</b><br>You can tap the mic to try again, or use a sample below.';
+        }
+      };
+      rec.onend = function () { listening = false; micBtn.classList.remove('listening'); };
+      try {
+        rec.start();
+        listening = true; micBtn.classList.add('listening');
+        micnote.innerHTML = '<b>Listening…</b> tap the mic again to stop. Speak one sale or the whole day.';
+      } catch (e) {
+        micnote.innerHTML = '<b>Could not start the mic.</b><br>Try Chrome or Edge, or use a sample below.';
+      }
+    });
+  }
+
+  // --- samples ---
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (chip) {
+    chip.addEventListener('click', function () {
+      var lang = chip.getAttribute('data-sample');
+      transcript.value = SAMPLES[lang];
+      if (lang === 'hi') $('lang').value = 'hi-IN';
+      else $('lang').value = 'en-IN';
+      render();
+    });
+  });
+
+  // --- summarize + render ---
+  function render() {
+    var text = transcript.value.trim();
+    var box = $('results');
+    if (!text) { box.classList.remove('show'); return; }
+    var s = window.VaaniParser.summarize(text);
+    lastSummary = s;
+    $('r-total').textContent = fmt(s.total);
+    $('r-count').textContent = String(s.itemCount || (s.items.length ? s.items.length : 0));
+    $('r-cash').textContent = fmt(s.cash);
+    $('r-upi').textContent = fmt(s.upi);
+    $('r-top').innerHTML = s.topItem ? 'Top item: <b>' + esc(s.topItem) + '</b>' : (s.items.length ? '' : 'No item names found - try "item ke X unit, Y rupaye".');
+    var rows = '';
+    s.items.forEach(function (it) {
+      if (!it.item && it.amount == null) return;
+      rows += '<tr><td>' + esc(it.item || 'sale') + '</td><td class="num">' + (it.qty != null ? esc(String(it.qty)) + ' ' + esc(it.unit || '') : '-') + '</td><td class="num">' + (it.amount != null ? fmt(it.amount) : '-') + '</td><td>' + (it.mode || '-') + '</td></tr>';
+    });
+    $('r-rows').innerHTML = rows;
+    var tbl = $('r-table');
+    tbl.style.display = rows ? '' : 'none';
+    var warn = $('r-warn');
+    if (s.declaredTotal != null && s.itemTotal > 0 && Math.abs(s.declaredTotal - s.itemTotal) > 1) {
+      warn.style.display = '';
+      warn.textContent = 'You said the total is ' + fmt(s.declaredTotal) + ', but the listed items add up to ' + fmt(s.itemTotal) + '. Check the numbers above.';
+    } else { warn.style.display = 'none'; }
+    box.classList.add('show');
+  }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  $('summarize').addEventListener('click', render);
+
+  // --- spoken reply ---
+  function replyText(s, lang) {
+    var parts;
+    if (lang === 'hi-IN') {
+      parts = 'आज ' + (s.itemCount || 0) + ' आइटम बिके, कुल ' + Math.round(s.total) + ' रुपये।';
+      if (s.cash || s.upi) parts += ' कैश ' + Math.round(s.cash) + ', यूपीआई ' + Math.round(s.upi) + '।';
+      if (s.topItem) parts += ' सबसे ज़्यादा बिका: ' + s.topItem + '।';
+      return parts;
+    }
+    if (lang === 'mr-IN') {
+      parts = 'आज ' + (s.itemCount || 0) + ' वस्तू विकल्या, एकूण ' + Math.round(s.total) + ' रुपये।';
+      if (s.cash || s.upi) parts += ' रोख ' + Math.round(s.cash) + ', यूपीआई ' + Math.round(s.upi) + '।';
+      if (s.topItem) parts += ' सर्वात जास्त विकले: ' + s.topItem + '।';
+      return parts;
+    }
+    parts = 'Today you sold ' + (s.itemCount || 0) + ' items for ' + Math.round(s.total) + ' rupees.';
+    if (s.cash || s.upi) parts += ' Cash ' + Math.round(s.cash) + ', U P I ' + Math.round(s.upi) + '.';
+    if (s.topItem) parts += ' Top item: ' + s.topItem + '.';
+    return parts;
+  }
+  $('speak').addEventListener('click', function () {
+    if (!lastSummary || !('speechSynthesis' in window)) return;
+    var lang = $('lang').value;
+    var u = new SpeechSynthesisUtterance(replyText(lastSummary, lang));
+    u.lang = lang;
+    var voices = window.speechSynthesis.getVoices();
+    var pref = lang.split('-')[0];
+    for (var i = 0; i < voices.length; i++) {
+      if (voices[i].lang && voices[i].lang.toLowerCase().indexOf(pref) === 0) { u.voice = voices[i]; break; }
+    }
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  });
+  if ('speechSynthesis' in window) { window.speechSynthesis.getVoices(); }
+
+  // --- copy summary ---
+  $('copy').addEventListener('click', function () {
+    if (!lastSummary) return;
+    var s = lastSummary;
+    var lines = ['Vaani summary · ' + new Date().toLocaleDateString('en-IN')];
+    s.items.forEach(function (it) {
+      if (!it.item && it.amount == null) return;
+      lines.push('• ' + (it.item || 'sale') + (it.qty != null ? ' - ' + it.qty + ' ' + (it.unit || '') : '') + (it.amount != null ? ' - ' + fmt(it.amount) : ''));
+    });
+    lines.push('Total: ' + fmt(s.total));
+    if (s.cash || s.upi) lines.push('Cash ' + fmt(s.cash) + ' · UPI ' + fmt(s.upi));
+    var txt = lines.join('\n');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function () { $('copy').textContent = 'Copied ✓'; setTimeout(function () { $('copy').textContent = 'Copy summary text'; }, 1600); });
+    }
+  });
+})();
+</script>
+</body></html>
