@@ -15,12 +15,12 @@ button{background:#111;color:#fff;border:0;padding:.65rem 1.4rem;border-radius:6
 .ok{background:#e6f7e6;padding:.6rem .8rem;border-radius:6px}
 .small{color:#555;font-size:.9rem}
 </style>
-</head>
+<script src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" crossorigin="anonymous"></script><script>window.mixpanel&&mixpanel.init("f932720f17584a4cfcfd266c0edbd4b9",{track_pageview:true,persistence:"localStorage",autocapture:false,record_sessions_percent:0});</script><script src="https://cdn.amplitude.com/script/c6be1ebed11119ea5d919a715cace4a6.js"></script><script>try{window.amplitude&&amplitude.init("c6be1ebed11119ea5d919a715cace4a6",{autocapture:{pageViews:true,sessions:true,formInteractions:false,fileDownloads:false,elementInteractions:false,attribution:false},defaultTracking:false})}catch(e){}</script></head>
 <body>
 <h1>Join the Vaani pilot list</h1>
 <p><strong>Vaani</strong> is Avenshift's Hindi/Marathi voice-note billing assistant for kirana stores: speak a sale, get a structured bill. We are pre-launch and onboarding pilot stores in Pune.</p>
 <div id="msg"></div>
-<form action="https://formsubmit.co/4ccacbe3f1a647aea20fc159b1c941c7" method="POST">
+<form onsubmit="try{window.mixpanel&&mixpanel.track('pilot_signup_submit')}catch(e){};try{window.amplitude&&amplitude.track('pilot_signup_submit')}catch(e){}" action="https://formsubmit.co/4ccacbe3f1a647aea20fc159b1c941c7" method="POST">
 <input type="hidden" name="_subject" value="Vaani pilot signup">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_captcha" value="false">
