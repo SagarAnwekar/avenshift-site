@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Join the Vaani pilot - Avenshift</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:system-ui,-apple-system,sans-serif;max-width:680px;margin:2.5rem auto;padding:0 1.25rem;line-height:1.55;color:#1a1a1a}
+h1{margin-bottom:.25rem}
+form{border:1px solid #ddd;border-radius:10px;padding:1.25rem;margin-top:1.25rem}
+label{display:block;margin:.6rem 0 .2rem;font-weight:600}
+input[type=text],input[type=email]{width:100%;padding:.55rem;margin-top:.2rem;box-sizing:border-box;border:1px solid #bbb;border-radius:6px;font-size:1rem}
+.consent{font-weight:400;font-size:.95rem}
+button{background:#111;color:#fff;border:0;padding:.65rem 1.4rem;border-radius:6px;font-size:1rem;cursor:pointer;margin-top:.75rem}
+.ok{background:#e6f7e6;padding:.6rem .8rem;border-radius:6px}
+.small{color:#555;font-size:.9rem}
+</style>
+</head>
+<body>
+<h1>Join the Vaani pilot list</h1>
+<p><strong>Vaani</strong> is Avenshift's Hindi/Marathi voice-note billing assistant for kirana stores: speak a sale, get a structured bill. We are pre-launch and onboarding pilot stores in Pune.</p>
+<div id="msg"></div>
+<form action="https://formsubmit.co/sagaranwekar99@gmail.com" method="POST">
+<input type="hidden" name="_subject" value="Vaani pilot signup">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://sagaranwekar.github.io/avenshift-site/signup.html?joined=1">
+<input type="text" name="_honey" style="display:none">
+<label for="name">Your name</label>
+<input type="text" id="name" name="name" maxlength="100">
+<label for="email">Email</label>
+<input type="email" id="email" name="email" required maxlength="200">
+<label class="consent"><input type="checkbox" name="consent" value="Agreed to be contacted about the Vaani pilot and product updates" required> I agree to be contacted by Avenshift about the Vaani pilot and product updates. I can unsubscribe anytime.</label>
+<button type="submit">Request pilot access</button>
+</form>
+<p class="small">We email only people who sign up here or join a pilot directly. Every email carries a working unsubscribe link. Contact: avenshift@proton.me</p>
+<p class="small"><a href="index.html">Back to Avenshift</a></p>
+<script>
+var p = new URLSearchParams(location.search);
+if (p.get('joined')) document.getElementById('msg').innerHTML = '<p class="ok">Thanks - you are on the pilot list. We will be in touch.</p>';
+</script>
+</body>
+</html>
