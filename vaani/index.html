@@ -13,10 +13,11 @@ textarea{width:100%;min-height:96px;background:#101812;border:1px solid var(--li
 </style><script src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" crossorigin="anonymous"></script><script>window.mixpanel&&mixpanel.init("f932720f17584a4cfcfd266c0edbd4b9",{track_pageview:true,persistence:"localStorage",autocapture:false,record_sessions_percent:0});window.vt=function(n){try{window.mixpanel&&mixpanel.track(n)}catch(e){}try{window.amplitude&&amplitude.track(n)}catch(e){}};document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("button");if(!b)return;if(b.id==="mic")vt("mic_tap");else if(b.id==="summarize")vt("make_summary");else if(b.dataset&&b.dataset.sample)vt("sample_"+b.dataset.sample)});</script><script src="https://cdn.amplitude.com/script/c6be1ebed11119ea5d919a715cace4a6.js"></script><script>try{window.amplitude&&amplitude.init("c6be1ebed11119ea5d919a715cace4a6",{autocapture:{pageViews:true,sessions:true,formInteractions:false,fileDownloads:false,elementInteractions:false,attribution:false},defaultTracking:false})}catch(e){}</script></head><body>
 <header><a class="brand" href="../"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path fill="#ddff94" d="M14 2h5l13 28h-8L16 11 8 30H0z"/><path fill="#101412" d="M15 22h10l3 6H12z"/></svg>vaani<small>BY AVENSHIFT</small></a><nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#notes">Honest notes</a><a href="../">avenshift ↗</a></nav><span class="status">LIVE BROWSER DEMO</span></header>
 <main>
-<section class="hero"><div><div class="eyebrow">Vaani · Voice-note sales assistant</div><h1>Speak your sales.<br><em>Get your numbers.</em></h1><p class="intro">Made for local shops and medical stores. Say what you sold, in Hindi or English, and Vaani writes it down, adds it up and reads it back. This page is a free demo that runs fully in your browser.</p><div class="hindi-line">बोलिए — Vaani लिखेगी, जोड़ेगी, सुनाएगी।</div></div>
-<div class="side"><h2>No app. No account.<br>No upload.</h2><p>The demo uses your browser's own speech service to hear you, and this page to do the maths. Your speech and sales text are not recorded or sent to us. We count anonymous page visits and button taps (Mixpanel, Amplitude), nothing you say or type.</p><div class="tick"><b>01</b> Hindi, English, Hinglish, मराठी</div><div class="tick"><b>02</b> Cash vs UPI split</div><div class="tick"><b>03</b> Spoken reply in your language</div></div></section>
+<section class="hero"><div><div class="eyebrow">Vaani · Voice-note sales assistant</div><h1>Speak your sales.<br><em>Get your numbers.</em></h1><p class="intro">Made for local shops and medical stores. Say what you sold, in Hindi or English, and Vaani writes it down, adds it up and reads it back. This page is a free demo whose maths runs in your browser.</p><div class="hindi-line">बोलिए — Vaani लिखेगी, जोड़ेगी, सुनाएगी।</div></div>
+<div class="side"><h2>No app. No account.<br>No upload.</h2><p>The demo uses your browser's own speech service to hear you (or, if you choose the Deepgram button, Deepgram), and this page to do the maths. By default your speech and sales text are not recorded or sent to us (the optional Deepgram button streams audio through our server to Deepgram; we store nothing). We count anonymous page visits and button taps (Mixpanel, Amplitude), nothing you say or type.</p><div class="tick"><b>01</b> Hindi, English, Hinglish, मराठी</div><div class="tick"><b>02</b> Cash vs UPI split</div><div class="tick"><b>03</b> Spoken reply in your language</div></div></section>
 <section class="demo" id="demo"><div class="demo-head"><h2>Try it now</h2><div class="langrow"><label for="lang">Language</label><select id="lang"><option value="en-IN">English (India)</option><option value="hi-IN" selected>हिन्दी</option><option value="mr-IN">मराठी</option></select></div></div>
 <div class="microw"><button class="mic" id="mic" aria-label="Start or stop listening">🎙</button><div class="micnote" id="micnote"><b>Tap the mic and say a sale.</b><br>Example: "Aaj paracetamol ke 10 strip beche 250 rupaye." Tap again to stop. Live mic needs Chrome or Edge; on other browsers, use a sample below.</div></div>
+<div class="dgrow" style="margin:0 0 12px"><button class="chip" id="dgmic" type="button" aria-label="Speak with Deepgram speech to text">🎙 Speak with Deepgram (any browser)</button><span id="dgnote" style="margin-left:10px;font-size:13px;opacity:.8">Optional. Sends your audio (up to 25 s) through our server to Deepgram for transcription. Not stored by us.</span></div>
 <textarea id="transcript" aria-label="What you said" placeholder="Your words appear here. You can edit them before making the summary."></textarea>
 <div class="btnrow"><button class="btn" id="summarize">Make my summary</button><div class="chips"><button class="chip" data-sample="hi">Sample · हिन्दी</button><button class="chip" data-sample="en">Sample · English</button><button class="chip" data-sample="mix">Sample · Kirana</button></div></div>
 <div class="results" id="results"><div class="cards"><div class="card"><small>TOTAL SALE</small><b id="r-total">₹0</b></div><div class="card"><small>ITEMS SOLD</small><b id="r-count">0</b></div><div class="card"><small>CASH</small><b id="r-cash">₹0</b></div><div class="card"><small>UPI / ONLINE</small><b id="r-upi">₹0</b></div></div>
@@ -24,9 +25,9 @@ textarea{width:100%;min-height:96px;background:#101812;border:1px solid var(--li
 <div class="warnline" id="r-warn" style="display:none"></div>
 <div class="btnrow"><button class="btn ghost" id="speak">🔊 Sunaiye · Listen</button><button class="btn ghost" id="copy">Copy summary text</button></div>
 <div class="fineline">The spoken reply uses your device's own voice. Hindi and Marathi voices depend on your phone or computer.</div></div>
-<div class="fineline">Demo runs fully in your browser. Audio is handled by your browser's speech service; this page stores nothing and sends no speech or sales text to us. Anonymous page-visit and button-tap counts go to Mixpanel and Amplitude.</div></section>
+<div class="fineline">Demo maths runs in your browser. Audio is handled by your browser's speech service; this page stores nothing and sends no speech or sales text to us unless you use the optional Deepgram button (audio goes through our relay to Deepgram, not stored). Anonymous page-visit and button-tap counts go to Mixpanel and Amplitude.</div></section>
 <section class="section" id="how"><div class="eyebrow">How it works</div><h2>Bolo. Likho. Jodo.</h2><div class="flow"><article class="step"><small>01 / BOL</small><h3>Say the sale</h3><p>"Crocin ke 5 strip, 120 rupaye." One line per sale, or the whole day at once.</p></article><article class="step"><small>02 / LIKHO</small><h3>Vaani writes it</h3><p>Your words become text you can check and fix before anything is added up.</p></article><article class="step"><small>03 / JODO</small><h3>Get the numbers</h3><p>Total, items, cash vs UPI, and a spoken reply you can listen to or copy for WhatsApp.</p></article></div></section>
-<section class="section" id="notes"><div class="eyebrow">Honest notes</div><h2>What this demo is.<br>And what it is not.</h2><div class="notes"><article class="note"><h3>A real demo, a small one.</h3><p>This page understands simple sale sentences in English, Hindi and Hinglish, and does the addition itself. It can mishear or mis-add. Always check the numbers before trusting them.</p></article><article class="note"><h3>Your words stay with you.</h3><p>Listening is done by your browser's speech service (on Chrome, that is Google's speech recognizer). This page itself saves and sends nothing. The full product will say clearly where data goes before it asks for any.</p></article><article class="note"><h3>Voices depend on your device.</h3><p>The spoken reply uses the voices already on your phone or computer. Many devices have a Hindi voice; fewer have Marathi. If yours does not, the reply still plays in the closest voice available.</p></article><article class="note"><h3>The product is in development.</h3><p>Vaani is being built by Avenshift for shop owners who would rather speak than type. This demo shows the idea; the full product, with saved history and better understanding, is not live yet.</p></article></div></section>
+<section class="section" id="notes"><div class="eyebrow">Honest notes</div><h2>What this demo is.<br>And what it is not.</h2><div class="notes"><article class="note"><h3>A real demo, a small one.</h3><p>This page understands simple sale sentences in English, Hindi and Hinglish, and does the addition itself. It can mishear or mis-add. Always check the numbers before trusting them.</p></article><article class="note"><h3>Your words stay with you.</h3><p>Listening is done by your browser's speech service (on Chrome, that is Google's speech recognizer). This page itself saves nothing and sends no speech or sales text, except audio when you tap the optional Deepgram button. The full product will say clearly where data goes before it asks for any.</p></article><article class="note"><h3>Voices depend on your device.</h3><p>The spoken reply uses the voices already on your phone or computer. Many devices have a Hindi voice; fewer have Marathi. If yours does not, the reply still plays in the closest voice available.</p></article><article class="note"><h3>The product is in development.</h3><p>Vaani is being built by Avenshift for shop owners who would rather speak than type. This demo shows the idea; the full product, with saved history and better understanding, is not live yet.</p></article></div></section>
 <section class="contact"><div><h2>Run a shop? We are listening.</h2><p>Vaani by Avenshift. Early, honest, in development.</p></div><a href="mailto:avenshift@proton.me">avenshift@proton.me ↗</a></section>
 </main>
 <footer><div class="footer-inner"><div>Vaani · a project by Avenshift.<br>Independent project, not a registered company.</div><div><a href="../">avenshift ↗</a><br><a href="mailto:avenshift@proton.me">avenshift@proton.me</a></div></div></footer>
@@ -325,6 +326,55 @@ textarea{width:100%;min-height:96px;background:#101812;border:1px solid var(--li
     });
   }
 
+
+  // --- Deepgram speech to text (opt-in, any browser with a microphone) ---
+  (function () {
+    var b = $('dgmic'), note = $('dgnote');
+    if (!b) return;
+    if (!(navigator.mediaDevices && window.MediaRecorder && window.WebSocket)) { b.disabled = true; b.style.opacity = '.45'; note.textContent = 'Deepgram mic needs a browser with microphone recording support.'; return; }
+    var ws = null, mr = null, stream = null, running = false, timer = null, base = '', finals = '';
+    var API = 'wss://vaani-help-api.onrender.com/dg';
+    function cleanup(msg) {
+      running = false; b.textContent = '🎙 Speak with Deepgram (any browser)';
+      clearTimeout(timer);
+      try { if (mr && mr.state !== 'inactive') mr.stop(); } catch (e) {}
+      try { if (stream) stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) {}
+      if (msg) note.textContent = msg;
+    }
+    function stop() {
+      if (!running) return;
+      var w = ws; cleanup('Finishing transcript…');
+      try { if (w && w.readyState === 1) w.send('stop'); } catch (e) {}
+      setTimeout(function () { try { if (w) w.close(); } catch (e) {} note.textContent = 'Done. Edit the text if needed, then tap Make my summary.'; }, 3000);
+    }
+    b.addEventListener('click', function () {
+      if (running) { stop(); return; }
+      if (window.vt) vt('dg_mic_tap');
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function (st) {
+        stream = st; base = transcript.value ? transcript.value.replace(/\s+$/, '') + ' ' : ''; finals = '';
+        var l = ($('lang').value || 'hi-IN').slice(0, 2);
+        ws = new WebSocket(API + '?lang=' + encodeURIComponent(l));
+        ws.onopen = function () {
+          var opts = {}; try { mr = new MediaRecorder(st, opts); } catch (e) { cleanup('Could not record audio in this browser.'); return; }
+          mr.ondataavailable = function (ev) { if (ev.data && ev.data.size && ws && ws.readyState === 1) ws.send(ev.data); };
+          mr.start(250); running = true; b.textContent = '⏹ Stop';
+          note.textContent = 'Listening via Deepgram… tap Stop when done (auto-stops at 25 s).';
+          timer = setTimeout(stop, 24000);
+        };
+        ws.onmessage = function (ev) {
+          try {
+            var m = JSON.parse(ev.data);
+            if (m.type !== 'Results' || !m.channel) return;
+            var t = (m.channel.alternatives[0] || {}).transcript || '';
+            if (m.is_final) { if (t) finals += t + ' '; transcript.value = base + finals; }
+            else if (t) { transcript.value = base + finals + t; }
+          } catch (e) {}
+        };
+        ws.onerror = function () { cleanup('Deepgram mic is unavailable right now. Use the browser mic or a sample.'); };
+        ws.onclose = function (ev) { if (running) cleanup(ev && ev.code === 1013 ? 'Deepgram mic limit reached for now. Try the browser mic or a sample.' : 'Connection closed.'); };
+      }).catch(function () { note.textContent = 'Mic permission was blocked. Allow the microphone, or use a sample below.'; });
+    });
+  })();
   // --- samples ---
   Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (chip) {
     chip.addEventListener('click', function () {
